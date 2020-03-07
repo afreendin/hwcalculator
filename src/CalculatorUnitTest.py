@@ -41,6 +41,19 @@ class MyTestCase(unittest.TestCase):
             for row in self.reader:
                 self.assertEqual(self.calc.square(int(row['Value 1'])), int(row['Result']))
 
+    def test_square_root(self):
+        with open('./src/SquareRoot.csv') as f:
+            self.reader = csv.DictReader(f)
+            for row in self.reader:
+                # self.assertEqual(float(format(self.calc.square_root(int(row['Value 1'])), '.9f')), float(row['Result']))
+                if isinstance(row['Result'], int):
+                    self.assertEqual(int(self.calc.square_root(int(row['Value 1']))), int(row['Result']))
+                if isinstance(row['Result'], float):
+                    if len(row['Result'].split('.')[1])==8:
+                        self.assertEqual(float(round(self.calc.square_root(int(row['Value 1'])), 8)), float(row['Result']))
+                    else:
+                        self.assertEqual(float(round(self.calc.square_root(int(row['Value 1'])), 9)), float(row['Result']))
+
 
 if __name__ == '__main__':
     unittest.main()

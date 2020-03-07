@@ -29,5 +29,12 @@ class MyTestCase(unittest.TestCase):
             for row in self.reader:
                 self.assertEqual(self.calc.multiply(int(row['Value 2']), int(row['Value 1'])), int(row['Result']))
 
+    def test_division(self):
+        with open('./src/Division.csv') as f:
+            self.reader = csv.DictReader(f)
+            for row in self.reader:
+                self.assertEqual(float(format(self.calc.division(int(row['Value 2']), int(row['Value 1'])), '.9f')), float(row['Result']))
+
+
 if __name__ == '__main__':
     unittest.main()

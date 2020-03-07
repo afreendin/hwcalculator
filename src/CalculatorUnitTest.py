@@ -35,6 +35,12 @@ class MyTestCase(unittest.TestCase):
             for row in self.reader:
                 self.assertEqual(float(format(self.calc.division(int(row['Value 2']), int(row['Value 1'])), '.9f')), float(row['Result']))
 
+    def test_square(self):
+        with open('./src/Square.csv') as f:
+            self.reader = csv.DictReader(f)
+            for row in self.reader:
+                self.assertEqual(self.calc.square(int(row['Value 1'])), int(row['Result']))
+
 
 if __name__ == '__main__':
     unittest.main()

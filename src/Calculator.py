@@ -20,3 +20,7 @@ class Calculator():
         self.result = a/b
         return self.result
 
+    def square(self, a, b):
+        self.result = a**2;
+        return self.result
+
